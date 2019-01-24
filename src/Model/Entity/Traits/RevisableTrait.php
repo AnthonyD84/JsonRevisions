@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Model\Entity\Traits;
+namespace JsonRevisions\Model\Entity\Traits;
 
 trait RevisableTrait
 {
-
     /***
      * @return int|void
      * return a count of current reversions for the entity
@@ -30,15 +29,7 @@ trait RevisableTrait
      */
     protected function _getPreviousReversion()
     {
-        $previousIndex = $this->number_of_reversions - 2;
-        $i = 0;
-        foreach ($this->revisions as $reversion) {
-            if ($i == $previousIndex) {
-                return $reversion;
-            }
-            $i++;
-        }
-        return false;
+        return array_slice($this->revisions, (($this->number_of_reversions) - 2), "1")[0];
     }
 
     /***

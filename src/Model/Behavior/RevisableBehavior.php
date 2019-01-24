@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Behavior;
+namespace JsonRevisions\Model\Behavior;
 
 use ArrayObject;
 use Cake\Datasource\EntityInterface;
@@ -20,8 +20,7 @@ class RevisableBehavior extends Behavior
      *  set numberOfRevisionsToKeep to 0 to save unlimited reversions.
      */
     protected $_defaultConfig = [
-        'revisionField' => 'revisions',
-        'omittedFields' => ['id','revisions', 'created', 'modified'],
+        'omittedFields' => ['id', 'revisions', 'created', 'modified'],
         'numberOfRevisionsToKeep' => 0,
     ];
 
@@ -42,7 +41,7 @@ class RevisableBehavior extends Behavior
         $currentRevisions = $this->removeOldRevisions($entity);
         $newRevision = $this->prepareNewRevision($entity);
         $currentRevisions[date("YmdHis")] = $newRevision;
-        return $entity->set($this->getConfig('revisionField'), $currentRevisions);
+        return $entity->set('revisions', $currentRevisions);
     }
 
     /***
@@ -69,8 +68,8 @@ class RevisableBehavior extends Behavior
     private function removeOldRevisions(Entity $entity)
     {
         $currenEntity = $entity->toArray();
-        $currentRevisions = $currenEntity[$this->getConfig('revisionField')];
-        if (empty($currenEntity[$this->getConfig('revisionField')])) {
+        $currentRevisions = $currenEntity["revisions"];
+        if (empty($currenEntity["revisions"])) {
             return $currentRevisions;
         }
 
