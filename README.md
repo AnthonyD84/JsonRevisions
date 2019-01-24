@@ -1,12 +1,11 @@
+# JsonRevisions plugin for CakePHP 3.x +
+
 # Intro
-I created this from a dream I had. I was curiious to see which would preform better in a CMS, a table blasted full of revision records or a single column.
-so far the only bottleneck i see is when returning a record with hundreds of revisions. 
-doing this eats up more server resources. 
+I created this from a dream I had. I was curious to see which would preform better in a CMS, a table blasted full of revision records or a single column.
+So far the only bottleneck i see is when returning a record with A LOT of revisions 500 +. 
 
 Maybe a polymorphic archive table is in the future?
-Until then enjoy and let me know if this is usefull.
-
-# JsonRevisions plugin for CakePHP 3.x +
+Until then enjoy and let me know if you found this useful.
 
 ## Installation
 You can install this plugin into your CakePHP application using Plugin::load('JsonRevisions);
