@@ -35,7 +35,7 @@ trait RevisableTrait
     /***
      * @param $key
      * @return $this|bool
-     *  re-marshal the current entity with data from a previous reversion by passing the key.
+     *  re-marshal the current entity with data from a previous reversion by passing the reversion key.
      */
     public function restoreReversionByKey($key)
     {
@@ -68,6 +68,8 @@ trait RevisableTrait
     /***
      * @return RevisableTrait|bool
      *  re-marshal the current entity with data from the oldest (first) reversion
+     * restores the first reversion on the stack.
+     * if you set the number of revisions to keep via the behavior configs then the oldest reversion left will be marshaled.
      */
     public function restoreFirstReversion()
     {
@@ -76,15 +78,17 @@ trait RevisableTrait
 
     /***
      * @return RevisableTrait|bool
+     * re-marshal the entity with the data from the previous reversion.
      */
-    public function restorePreviousreversion()
+    public function restorePreviousReversion()
     {
         return $this->restoreReversion($this->previous_reversion);
-
     }
 
     /***
      * clear out the revisions array.
+     * empty out the revisions column of the entity.
+     * YOU WILL LOOSE ALL REVISION DATA DO THIS AT YOUR OWN RISK.
      */
     public function deleteAllReversions()
     {
