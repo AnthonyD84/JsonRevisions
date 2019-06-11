@@ -10,6 +10,9 @@ trait RevisableTrait
      */
     protected function _getNumberOfReversions()
     {
+        if(is_null($this->revisions) || empty($this->revisions)){
+            return 0;
+        }
         return count($this->revisions);
     }
 
