@@ -38,7 +38,9 @@ class RevisableBehavior extends Behavior
 
     private function setRevision(Entity $entity)
     {
-        $currentRevisions = $this->removeOldRevisions($entity);
+        if(!is_null($entity->revisions) && !empty($entity->revisions)){
+            $currentRevisions = $this->removeOldRevisions($entity);
+        }
         $newRevision = $this->prepareNewRevision($entity);
         $currentRevisions[date("YmdHis")] = $newRevision;
         return $entity->set('revisions', $currentRevisions);
